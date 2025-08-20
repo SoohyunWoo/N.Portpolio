@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="ko" class="h-full">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>PDF Viewer</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+      html, body { height: 100%; }
+    </style>
+  </head>
+  <body class="h-full bg-white text-slate-900 dark:bg-slate-950 dark:text-slate-100">
+    <div id="wrap" class="h-full">
+      <embed id="pdf" type="application/pdf" class="w-full h-full" />
+    </div>
+
+    <script>
+      const params = new URLSearchParams(location.search);
+      const file = params.get('file');
+      const el = document.getElementById('pdf');
+
+      if (file) {
+        el.src = file + '#view=FitH';
+      } else {
+        document.body.innerHTML =
+          '<div class="h-full grid place-items-center text-slate-600">파일 경로가 없습니다.</div>';
+      }
+    </script>
+  </body>
+</html>
